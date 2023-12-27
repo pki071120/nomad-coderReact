@@ -11,24 +11,26 @@ const TodoList = () => {
     if (todo === "") {
       return;
     }
-    const li = () => {
-      return <li>{todo}</li>;
-    };
-    setList((currentArray) => [...currentArray, li]);
+    setList((currentArray) => [todo, ...currentArray]);
     setTodo("");
   };
+  console.log(list);
   return (
     <div>
-      <form onSubmit={onsubmit}>
+      <h1>My Todos ({list.length})</h1>
+      <form onSubmit={onSubmit}>
         <input
           onChange={onChange}
           value={todo}
           type="text"
           placeholder="Write your to do"
         />
-        <button onClick={onSubmit}>Add Todo</button>
+        <button>Add Todo</button>
       </form>
-      <ul>{list}</ul>
+      <hr />
+      {list.map((item, index) => {
+        return <li key={index}>{item}</li>;
+      })}
     </div>
   );
 };
